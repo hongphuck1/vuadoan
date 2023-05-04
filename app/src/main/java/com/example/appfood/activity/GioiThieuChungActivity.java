@@ -11,11 +11,17 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.appfood.R;
 import com.example.lib.common.NetworkConnection;
 import com.example.lib.common.Show;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 public class GioiThieuChungActivity extends AppCompatActivity {
     Toolbar toolbar_Gioithieuchung;
     TextView thongbao_soluong;
-
+    private GoogleMap gm;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +62,23 @@ public class GioiThieuChungActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         Show.thayDoiSoLuongGioHangNho(thongbao_soluong);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
+                gm = googleMap;
+                LatLng sydney = new LatLng(20.991307952549086, 105.83969765318132);
+                gm.getUiSettings().setZoomControlsEnabled(true); // hiển thị dấu + - để zoom bản đồ
+                gm.getUiSettings().setCompassEnabled(true); // hiển thị la bàn
+                gm.getUiSettings().setMyLocationButtonEnabled(true);
+                gm.addMarker(new MarkerOptions()
+                        .position(sydney)
+                        .title("Marker in Sydney"));
+                float zoomLevel = 13.0f; // giá trị zoom level mong muốn
+                gm.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,zoomLevel));
+            }
+        });
     }
 
     @Override

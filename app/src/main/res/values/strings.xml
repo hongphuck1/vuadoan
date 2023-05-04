@@ -68,5 +68,6 @@
     <string name="slide_3">https://image.phunuonline.com.vn/fckeditor/upload/2021/20210326/images/co-hoi-san-deal-4k-trong-nowfood-_631616742485.jpg</string>
     <string name="slide_4">https://image.phunuonline.com.vn/fckeditor/upload/2021/20210326/images/co-hoi-san-deal-4k-trong-nowfood-_31616732759.jpg</string>
     <string name="title_activity_gioi_thieu_chung">GioiThieuChungActivity</string>
+    <string name="title_activity_maps">MapsActivity</string>
 
 </resources>
